@@ -19,7 +19,7 @@ public class GameScreen extends ScreenAdapter {
 	public boolean isBluecarMoved = false;
 	public boolean isRedcarMoved = false;
 	public static McuWithPeriBoard peri;
-	int input1;
+	int input1,input2;
     public GameScreen(MyTwocarsGame mytwocarsGame) {
         this.mytwocarsGame = mytwocarsGame;
         world = new World(mytwocarsGame);
@@ -48,7 +48,7 @@ public class GameScreen extends ScreenAdapter {
 		Bluecar bluecar = world.getBluecar();
 		Redcar redcar = world.getRedcar();
 		try {
-			input1 = peri.getLight();
+			input1 = peri.getLight_C();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,8 +60,18 @@ public class GameScreen extends ScreenAdapter {
 			isRedcarMoved = true;
 			redcar.move(isRedcarMoved);
 		}
-		if(Gdx.input.isKeyJustPressed(Keys.X)) {
-			isBluecarMoved = !isBluecarMoved;
+		
+		try {
+			input2 = peri.getLight_B();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (input2 < 300) {
+			isRedcarMoved = false;
+			bluecar.move(isBluecarMoved);
+		}
+		if (input2 >= 300) {
+			isRedcarMoved = true;
 			bluecar.move(isBluecarMoved);
 		}
 	}
