@@ -52,11 +52,11 @@ public class GameScreen extends ScreenAdapter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (input1 < 300) {
+		if (input1 >= 300) {
 			isRedcarMoved = false;
 			redcar.move(isRedcarMoved);
 		}
-		if (input1 >= 300) {
+		if (input1 < 300) {
 			isRedcarMoved = true;
 			redcar.move(isRedcarMoved);
 		}
@@ -67,11 +67,11 @@ public class GameScreen extends ScreenAdapter {
 			e.printStackTrace();
 		}
 		if (input2 < 300) {
-			isRedcarMoved = false;
+			isBluecarMoved = false;
 			bluecar.move(isBluecarMoved);
 		}
 		if (input2 >= 300) {
-			isRedcarMoved = true;
+			isBluecarMoved = true;
 			bluecar.move(isBluecarMoved);
 		}
 	}
